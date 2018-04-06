@@ -18,6 +18,7 @@ public class Entorno extends javax.swing.JFrame {
      */
     public Entorno() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
