@@ -1,9 +1,16 @@
 package com.juan.pruebaclonadocommitpush;
 
+import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.errors.GitAPIException;
+import org.kohsuke.github.GHCommit;
+import org.kohsuke.github.GHCommitBuilder;
 import org.kohsuke.github.GHCreateRepositoryBuilder;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
@@ -17,7 +24,12 @@ public class Principal {
         int x;
         do {
             Funciones.credentials();
-            x = Integer.parseInt(JOptionPane.showInputDialog("Pulsa 1 Para crear repositorio"));
+            x = Integer.parseInt(JOptionPane.showInputDialog("--------Menú--------"
+                    +"\nPulsa 1 Para crear repositorio"
+                    +"\nPulsa 2 Para borrar un repositorio"
+                    +"\nPulsa 3 Para hacer un commit"
+                    +"\nPulsa 4 Para clonar un repositorio"
+                    ));
             switch (x) {
                 
                 case 1: {
@@ -34,8 +46,23 @@ public class Principal {
                 break;
                 case 2:{
                     
+                    break;
+                   
                     
-                 break;   
+                }
+                case 3:{
+                    break;
+                }
+                
+                    
+                case 4:{
+                try {
+                    Git.cloneRepository().setURI(JOptionPane.showInputDialog("Introduce la URL del repositorio a Clonar")).setDirectory(new File(JOptionPane.showInputDialog("Introduce la ruta donde quieres clonar el Repositorio"))).call();
+                    
+                    break;
+                } catch (GitAPIException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 }
                 default:
                     throw new AssertionError();
