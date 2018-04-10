@@ -45,7 +45,7 @@ public class Funciones {
      */
     public static void credentials(){
         user=JOptionPane.showInputDialog("Introduce el nombre de usuario(mail)");
-        pass=JOptionPane.showInputDialog("Introduce la contraseña e usuario");
+        pass=JOptionPane.showInputDialog(null,"Introduce la contraseña e usuario");
     }
     /**
      * Metodo estatico que devuelve un String con el nombre del repositorio.
@@ -65,4 +65,7 @@ public class Funciones {
          return desc;       
         
     }
+    
+    
+   
 }
