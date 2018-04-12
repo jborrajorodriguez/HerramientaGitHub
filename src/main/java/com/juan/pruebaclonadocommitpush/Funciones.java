@@ -2,11 +2,17 @@ package com.juan.pruebaclonadocommitpush;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import javax.swing.JOptionPane;
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.InitCommand;
+import org.eclipse.jgit.api.PushCommand;
+import org.eclipse.jgit.api.RemoteAddCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
+import org.eclipse.jgit.transport.URIish;
+import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
 
@@ -96,14 +102,11 @@ public class Funciones {
     }
 
     public static void inicializar(String ruta) {
-        try {
-            FileRepositoryBuilder repositoryBuilder = new FileRepositoryBuilder();
-            Repository repository = repositoryBuilder.setGitDir(new File(ruta))
-                    .readEnvironment() // scan environment GIT_* variables
-                    .findGitDir() // scan up the file system tree
-                    .setMustExist(true)
-                    .build();
-        } catch (IOException ex) {
+        
+        InitCommand repositorio=new InitCommand();
+        try{
+            repositorio.setDirectory(new File(ruta)).call();
+        }catch(GitAPIException ex){
             System.out.println("Error al inicializar");
         }
     }
@@ -115,19 +118,41 @@ public class Funciones {
         }
         
     }
+    public static void push() throws URISyntaxException{
+        String url=JOptionPane.showInputDialog("Introduce la url del repositorio");
+        String ruta=JOptionPane.showInputDialog("Introduce la ruta local del repositorio");
+        try{
+            FileRepositoryBuilder repositoryBuilder=new FileRepositoryBuilder();
+            Repository repository=repositoryBuilder.setGitDir(new File(ruta))
+                    .readEnvironment()
+                    .findGitDir()
+                    .setMustExist(true)
+                    .build();
+            
+            Git git=new Git(repository);
 
-//    public static void commit() {
-//        Repository repositorio = repositoryBuilder.setGitDir(new File("/path/to/repo/.git"))
-//                .readEnvironment() // scan environment GIT_* variables
-//                .findGitDir() // scan up the file system tree
-//                .setMustExist(true)
-//                .build();
-//        try {
-//            Git git = new Git(repositorio);
-//            AddCommand add = git.add();
-//            add.addFilepattern("someDirectory").call();
-//        } catch (GitAPIException ex) {
-//            Logger.getLogger(Funciones.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-}
+            RemoteAddCommand remoteAddCommand=git.remoteAdd();
+            remoteAddCommand.setName("origin");
+            remoteAddCommand.setUri(new URIish(url));
+            remoteAddCommand.call();
+            
+            PushCommand pushCommand=git.push();
+            pushCommand.setCredentialsProvider(new UsernamePasswordCredentialsProvider(Funciones.getUser(),Funciones.getPass()));
+            pushCommand.call();
+            
+        }catch(IOException ex){
+            System.out.println("Error: Repositorio ");
+        }catch(URISyntaxException ex){
+            System.out.println("Error: URL ");
+        }catch(GitAPIException ex){
+            System.out.println("Error: "+ex);
+        }
+    }
+    
+   
+    }
+    
+    
+
+
+
