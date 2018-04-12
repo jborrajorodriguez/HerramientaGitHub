@@ -59,9 +59,10 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="163" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButton1" min="-2" pref="228" max="-2" attributes="0"/>
-                      <Component id="jButton3" min="-2" pref="228" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="jButton2" max="32767" attributes="0"/>
+                      <Component id="jButton1" alignment="1" pref="228" max="32767" attributes="0"/>
+                      <Component id="jButton3" alignment="1" pref="228" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
               </Group>
@@ -76,7 +77,9 @@
                   <Component id="jButton3" min="-2" pref="58" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" pref="54" max="-2" attributes="0"/>
-                  <EmptySpace pref="191" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jButton2" min="-2" pref="62" max="-2" attributes="0"/>
+                  <EmptySpace pref="118" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -105,6 +108,11 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Abrir Repositorio"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
