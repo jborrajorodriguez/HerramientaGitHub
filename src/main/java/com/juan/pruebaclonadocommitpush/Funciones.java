@@ -2,16 +2,15 @@ package com.juan.pruebaclonadocommitpush;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import org.eclipse.jgit.api.AddCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
-import org.kohsuke.github.GHEventPayload.Repository;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
+
+
 
 /**
  * @author {Juan Borrajo Rodriguez}
@@ -82,24 +81,39 @@ public class Funciones {
 
     }
 
-    public static void crear(String nombre, String desc,String ruta) {
-        GitHub github;
+    public static void crear(String nombre, String desc, String ruta) {
         try {
+            GitHub github;
+
             github = GitHub.connectUsingPassword(Funciones.getUser(), Funciones.getPass());
             GHRepository builder = github.createRepository(nombre, desc, " ", true);
             JOptionPane.showMessageDialog(null, builder.getGitTransportUrl());
+
+        } catch (IOException ex) {
+            System.out.println("Error");
+        }
+
+    }
+
+    public static void inicializar(String ruta) {
+        try {
             FileRepositoryBuilder repositoryBuilder = new FileRepositoryBuilder();
-            org.eclipse.jgit.lib.Repository repository = repositoryBuilder.setGitDir(new File(ruta+".git"))
+            Repository repository = repositoryBuilder.setGitDir(new File(ruta))
                     .readEnvironment() // scan environment GIT_* variables
                     .findGitDir() // scan up the file system tree
                     .setMustExist(true)
                     .build();
-            
-
         } catch (IOException ex) {
-            System.out.println("Error al crear");
-
+            System.out.println("Error al inicializar");
         }
+    }
+    public static void clonar(String url,String nombre){
+        try {
+            Git.cloneRepository().setURI(url).setDirectory(new File(nombre)).call();
+        } catch (GitAPIException ex) {
+            System.out.println("Error al clonar");
+        }
+        
     }
 
 //    public static void commit() {
