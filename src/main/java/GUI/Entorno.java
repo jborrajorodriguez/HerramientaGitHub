@@ -141,6 +141,8 @@ public class Entorno extends javax.swing.JFrame {
         Funciones.setPass(jPasswordField1.getText());
         Entorno2 en=new Entorno2();
         en.setVisible(rootPaneCheckingEnabled);
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
