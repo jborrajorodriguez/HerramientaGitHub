@@ -110,11 +110,13 @@ public class Entorno2 extends javax.swing.JFrame {
         e4.setVisible(rootPaneCheckingEnabled);
         e4.setLocationRelativeTo(null);
         e4.pack();
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Entorno3 en=new Entorno3();
         en.setVisible(rootPaneCheckingEnabled);
+        this.dispose();
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
