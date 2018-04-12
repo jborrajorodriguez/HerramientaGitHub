@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import com.juan.pruebaclonadocommitpush.Funciones;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +23,7 @@ public class Entorno4 extends javax.swing.JFrame {
      */
     public Entorno4() {
         initComponents();
+        
     }
 
     /**
@@ -76,6 +78,11 @@ public class Entorno4 extends javax.swing.JFrame {
         });
 
         jButton2.setText("Atras");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -135,11 +142,7 @@ public class Entorno4 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            Git.cloneRepository().setURI(jTextField1.getText()).setDirectory(new File(jTextField2.getText())).call();
-        } catch (GitAPIException ex) {
-            Logger.getLogger(Entorno4.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Funciones.clonar(jTextField1.getText(),jTextField2.getText());
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -151,6 +154,12 @@ public class Entorno4 extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Entorno2 en=new Entorno2();
+        en.setVisible(true);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
