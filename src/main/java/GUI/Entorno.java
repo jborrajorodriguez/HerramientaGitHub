@@ -16,9 +16,11 @@ public class Entorno extends javax.swing.JFrame {
     /**
      * Creates new form Entorno
      */
+     
     public Entorno() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -141,6 +143,8 @@ public class Entorno extends javax.swing.JFrame {
         Funciones.setPass(jPasswordField1.getText());
         Entorno2 en=new Entorno2();
         en.setVisible(rootPaneCheckingEnabled);
+        this.dispose();
+        
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
